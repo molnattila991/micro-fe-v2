@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Angular Shell</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div>
+  <button mat-button (click)="alert()">alert</button>
+</div>
+
+<div>
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+      <iframe src="http://localhost/mf1" class="responsive-iframe" id="mf1Frame"></iframe> 
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <iframe src="http://localhost/mf2" class="responsive-iframe" id="mf2Frame"></iframe> 
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

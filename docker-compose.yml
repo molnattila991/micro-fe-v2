@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+    nginx:
+        image: nginx:1.19.9-alpine
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./webserver-config/apigateway.default.conf:/etc/nginx/conf.d/default.conf
+            - ./src/fe/shell/dist/shell:/usr/share/nginx/html/shell
+            - ./src/fe/todo-app-mf1/dist/eurofins-app:/usr/share/nginx/html/mf1
+            - ./src/fe/todo-app-mf2/dist/eurofins-app:/usr/share/nginx/html/mf2
+    todo-api-v1:
+        build:
+            context: ./src/api/todo-api-v1
+        volumes:
+            - ./src/api/todo-api-v1/todo-api/db/:/app/db/
+        ports:
+            - 8090:80
+    todo-api-v2:
+        build:
+            context: ./src/api/todo-api-v2
+        volumes:
+            - ./src/api/todo-api-v2/todo-api/db/:/app/db/
+        ports:
+            - 8091:80
+    # mssql-db:
+    #     image: "mcr.microsoft.com/mssql/server"
+    #     environment:
+    #         SA_PASSWORD: "Your_password123"
+    #         ACCEPT_EULA: "Y"

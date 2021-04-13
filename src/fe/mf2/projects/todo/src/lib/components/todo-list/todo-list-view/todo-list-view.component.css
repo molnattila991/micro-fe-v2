@@ -1,0 +1,12 @@
+.center {
+  height: 80%;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.todo-item-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

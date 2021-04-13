@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>New Todo</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formGroup">
+
+        <mat-form-field class="form-field">
+            <mat-label>Title</mat-label>
+            <input matInput type="text" formControlName="title">
+            <mat-error *ngIf="formGroup.get('title')?.hasError('required')">
+                Required
+            </mat-error>
+            <mat-error *ngIf="formGroup.get('title')?.hasError('minlength')">
+                Title must be at least 3 characters long.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>Description</mat-label>
+            <input matInput type="text" formControlName="description">
+            <mat-error *ngIf="formGroup.get('description')?.hasError('required')">
+                Required
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions style="float: right;">
+    <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+    <button [disabled]="formGroup.invalid" mat-raised-button color="primary" (click)="save()" cdkFocusInitial>Save</button>
+</div>

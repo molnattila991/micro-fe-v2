@@ -1,0 +1,26 @@
+html,
+body {
+    height: 100%;
+    overflow-y: hidden;
+
+    body {
+        margin: 0;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+}
+
+.mat-toolbar {
+    position: relative;
+}
+
+.form-field {
+    width: 100%;
+
+    .form-field-container {
+        padding: 10px;
+    }
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

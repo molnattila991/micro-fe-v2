@@ -1,0 +1,29 @@
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding: 20px;
+}
+
+.container {
+  height: calc(100% - 64px);
+}
+
+.sticky-header {
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  z-index: 9999;
+}
+
+.sticky-button {
+  margin: 10px;
+  float: right;
+  z-index: 9999;
+}

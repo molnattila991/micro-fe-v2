@@ -1,0 +1,18 @@
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" [opened]="opened">
+        <div style="width: 200px; padding:10px;">
+            <lib-todo-filter-container></lib-todo-filter-container>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="height: 100%;">
+            <div class="sticky-header">
+                <button class="sticky-button" mat-mini-fab color="primary" mat-icon-button>
+                    <mat-icon (click)="openCreateDialog()">add</mat-icon>
+                </button>
+            </div>
+
+            <lib-todo-list-container></lib-todo-list-container>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

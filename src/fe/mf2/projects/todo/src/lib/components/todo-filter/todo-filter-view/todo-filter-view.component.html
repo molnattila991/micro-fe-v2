@@ -1,0 +1,15 @@
+<h4>Filter list</h4>
+<div>
+    <form [formGroup]="formGroup">
+
+        <mat-form-field class="form-field">
+            <mat-label>Text</mat-label>
+            <input matInput type="text" formControlName="text">
+        </mat-form-field>
+
+    </form>
+</div>
+<div class="buttons-container">
+    <button mat-raised-button class="left-button" color="primary" (click)="clearSend()">clear</button>
+    <button mat-raised-button color="primary" (click)="filterSend()">Filter</button>
+</div>
