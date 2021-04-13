@@ -5,7 +5,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk::3.1-alpine3.13 AS build
+FROM mcr.microsoft.com/dotnet/sdk:3.1-alpine3.13 AS build
 WORKDIR /src
 COPY ["todo-api/todo-api.csproj", "todo-api/"]
 RUN dotnet restore "todo-api/todo-api.csproj"
