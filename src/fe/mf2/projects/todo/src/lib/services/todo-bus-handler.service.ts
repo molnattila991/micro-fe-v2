@@ -58,7 +58,7 @@ export class TodoBusHandlerService {
 
   openEditDialog(item: TodoItem) {
     if (this.busConnector.isConnected()) {
-      this.busConnector.dispatchEvent(busEvent.todo.editDialogOpen, { item });
+      this.busConnector.dispatchEvent(busEvent.todo.editDialogOpen, item);
     } else {
       let dialogConfig = new MatDialogConfig();
       dialogConfig.viewContainerRef

@@ -27,7 +27,7 @@
     "@ngrx/store": "11.1.0",
     "@ngrx/effects": "11.1.0",
     "ngx-toastr": "13.2.1",
-    "@molnarattila991/bus": "1.0.20"
+    "@molnarattila991/bus": "1.0.21"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1102.8",
