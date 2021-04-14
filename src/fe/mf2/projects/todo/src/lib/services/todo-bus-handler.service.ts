@@ -36,7 +36,7 @@ export class TodoBusHandlerService {
       let dialogConfig = new MatDialogConfig();
       dialogConfig.viewContainerRef
       let dialogRef = this.dialog.open(TodoCreateContainerComponent, {
-        width: '300px',
+        width: '350px',
       });
     }
   }
@@ -73,7 +73,7 @@ export class TodoBusHandlerService {
       let dialogConfig = new MatDialogConfig();
       dialogConfig.viewContainerRef
       let dialogRef = this.dialog.open(TodoEditContainerComponent, {
-        width: '300px',
+        width: '350px',
         data: item
       });
     }
