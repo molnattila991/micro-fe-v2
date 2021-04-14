@@ -3,7 +3,7 @@ This is a sample todo application that implements micro frontend and service-ori
 - All frontend application has written in Angular
     - custom npm packages
     - shell with two contained micro frontend
-    - separate logic
+    - separated logic
     - NGRX, Angular Material
     - micro frontends communicate over event bus
 - All api project written in ASP.NET Core 3.1
