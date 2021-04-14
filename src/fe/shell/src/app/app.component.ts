@@ -34,10 +34,6 @@ export class AppComponent implements AfterViewInit {
   animal: string = "";
   name: string = "";
 
-  alert() {
-    //createBusEventMaster("todo-item-created", { title: "Data From Master", priority: 1 });
-  }
-
   constructor(public dialog: MatDialog) {
 
   }
