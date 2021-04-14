@@ -29,14 +29,14 @@ export class TodoListContainerComponent implements OnInit {
   ngOnDestroy(): void {
     this.todoBus.editTodoUnSubscribe();
     this.todoBus.deleteTodoUnSubscribe();
-    this.todoBus.toggleTodoSubscribe();
+    this.todoBus.toggleTodoUnSubscribe();
   }
 
   ngOnInit(): void {
     this.store.dispatch(refresh());
     this.todoBus.editTodoSubscribe();
     this.todoBus.deleteTodoSubscribe();
-    this.todoBus.toggleTodoUnSubscribe();
+    this.todoBus.toggleTodoSubscribe();
   }
 
   openDialog(item: TodoItem): void {

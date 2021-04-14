@@ -22,6 +22,7 @@ import { TodoListContainerComponent } from './components/todo-list/todo-list-con
 import { TodoListViewComponent } from './components/todo-list/todo-list-view/todo-list-view.component';
 import { TodoFilterModule } from './components/todo-filter/todo-filter.module';
 import { TodoBusHandlerService } from './services/todo-bus-handler.service';
+import { BusIsConnectedDirective } from './components/directive/bus-is-connected.directive';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
     TodoPageContainerComponent,
     TodoPageViewComponent,
     TodoListContainerComponent,
-    TodoListViewComponent
+    TodoListViewComponent,
+    BusIsConnectedDirective
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,9 @@ const routes: Routes = [
   providers: [
     TodoApiService,
     TodoBusHandlerService
+  ],
+  exports:[
+    BusIsConnectedDirective
   ]
 })
 export class TodoModule { }
