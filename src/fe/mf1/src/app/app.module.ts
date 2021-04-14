@@ -37,6 +37,7 @@ import { BusProviderModule, ToolsProviderModule } from 'projects/infrastructure/
     StoreModule.forRoot({ui: uiReducer}),
     EffectsModule.forRoot([AppEffects]),
 
+    
     BusProviderModule,
     ToolsProviderModule
   ],

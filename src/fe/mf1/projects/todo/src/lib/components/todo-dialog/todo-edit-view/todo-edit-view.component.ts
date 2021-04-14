@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TodoEdit } from '../../../models/todo-edit.interface';
-import { TodoItem } from "projects/core/src/public-api";
+import { TodoEdit, TodoItem } from "projects/core/src/public-api";
 
 @Component({
   selector: 'lib-todo-edit-view',

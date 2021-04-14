@@ -1,2 +1,6 @@
-export { TodoTest } from "./todo-test.interface"
-export { TodoItem } from "../../../../../todo/src/lib/models/todo-item.interface"
+export { TodoItem } from "./todo-item.interface"
+export { TodoCreate } from "./todo-create.interface"
+export { TodoEdit } from "./todo-edit.interface"
+export { TodoItemProp} from "./todo-item-prop.interface"
+export { TodoListFilter} from "./todo-list-filter.interface"
+export { TodoModuleState} from "./todo-module-state.interface"

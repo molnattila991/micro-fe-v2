@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { TodoListFilter } from '../models/todo-list-filter.interface';
-import { TodoModuleState } from '../models/todo-module-state.interface';
+import { TodoListFilter, TodoModuleState } from 'projects/core/src/public-api';
 import { filterList, refreshList } from './todo.actions';
 
 export const initialState: TodoModuleState = <TodoModuleState>{

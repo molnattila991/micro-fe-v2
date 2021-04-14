@@ -2,12 +2,9 @@ import { Inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators"
-import { TodoItemProp } from "../models/todo-item-prop.interface";
 import { addTodo, deleteTodo, editTodo, refresh, refreshList } from "./todo.actions";
 import { Store } from "@ngrx/store";
-import { TodoModuleState } from "../models/todo-module-state.interface";
-import { TodoListFilter } from "../models/todo-list-filter.interface";
-import { IApiService, INJECTION_TOKEN, IToaster, ToasterOption, TodoItem } from "projects/core/src/public-api";
+import { IApiService, INJECTION_TOKEN, IToaster, ToasterOption, TodoItem, TodoItemProp, TodoListFilter, TodoModuleState } from "projects/core/src/public-api";
 
 @Injectable()
 export class TodoEffects {
