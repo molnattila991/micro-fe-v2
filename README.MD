@@ -1,4 +1,4 @@
-# Eurofins App Stack
+# Eurofins App
 
 ## Run with Docker Compose
 - download and install Docker Desktop for Windows 
