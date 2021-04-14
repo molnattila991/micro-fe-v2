@@ -7,6 +7,9 @@ This is a sample todo application that implements micro frontend and service-ori
     - NGRX, Angular Material
     - micro frontends communicate over event bus
 - All api project written in ASP.NET Core 3.1
+    - Entity Framework Core
+    - SqLite
+    - XUnit
     - swagger
     - serilog
     - n-tier/onion architecture
