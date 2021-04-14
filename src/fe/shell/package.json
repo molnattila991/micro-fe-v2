@@ -23,7 +23,7 @@
     "tslib": "2.2.0",
     "zone.js": "0.11.4",
     "@molnarattila991/bus": "1.0.21",
-    "@molnarattila991/todo-dialogs": "0.0.9",
+    "@molnarattila991/todo-dialogs": "0.0.10",
     "@angular/material": "11.2.8",
     "@angular/cdk": "11.2.8"
   },
