@@ -57,7 +57,7 @@ export class TodoBusHandlerService {
   }
 
   toggleTodoSubscribe(): void {
-    this.busConnector.subscribe(busEvent.todo.edit, (data: TodoItem) => {
+    this.busConnector.subscribe(busEvent.todo.toggle, (data: TodoItem) => {
       this.store.dispatch(editTodo({ item: { ...data, isCompleted: !data.isCompleted } }));
     });
   }
