@@ -1,4 +1,4 @@
-import { TodoItem } from "./todo-item.interface";
+import { TodoItem } from "projects/core/src/public-api";
 import { TodoListFilter } from "./todo-list-filter.interface";
 
 export interface TodoModuleState {

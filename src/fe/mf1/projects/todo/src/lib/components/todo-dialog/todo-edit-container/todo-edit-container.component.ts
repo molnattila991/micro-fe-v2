@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { TodoEdit } from '../../../models/todo-edit.interface';
-import { TodoItem } from '../../../models/todo-item.interface';
+import { TodoItem } from "projects/core/src/public-api";
 import { TodoModuleState } from '../../../models/todo-module-state.interface';
 import { editTodo } from '../../../store/todo.actions';
 

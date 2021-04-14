@@ -6,7 +6,7 @@ import { addTodo, deleteTodo, editTodo } from '../store/todo.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TodoCreateContainerComponent } from '../components/todo-dialog/todo-create-container/todo-create-container.component';
 import { TodoEditContainerComponent } from '../components/todo-dialog/todo-edit-container/todo-edit-container.component';
-import { TodoItem } from '../models/todo-item.interface';
+import { TodoItem } from "projects/core/src/public-api";
 
 @Injectable()
 export class TodoBusHandlerService {

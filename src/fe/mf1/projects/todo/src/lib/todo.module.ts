@@ -23,6 +23,7 @@ import { TodoListViewComponent } from './components/todo-list/todo-list-view/tod
 import { TodoFilterModule } from './components/todo-filter/todo-filter.module';
 import { TodoBusHandlerService } from './services/todo-bus-handler.service';
 import { BusIsConnectedDirective } from './components/directive/bus-is-connected.directive';
+import { INJECTION_TOKEN } from 'projects/core/src/public-api';
 
 const routes: Routes = [
   {
@@ -57,7 +58,7 @@ const routes: Routes = [
     TodoFilterModule,
   ],
   providers: [
-    TodoApiService,
+    { provide: INJECTION_TOKEN.API.TODO, useClass: TodoApiService },
     TodoBusHandlerService
   ],
   exports:[

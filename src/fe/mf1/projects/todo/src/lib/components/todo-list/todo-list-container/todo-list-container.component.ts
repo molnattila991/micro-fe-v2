@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodoItem } from '../../../models/todo-item.interface';
+import { TodoItem } from "projects/core/src/public-api";
 import { TodoModuleState } from '../../../models/todo-module-state.interface';
 import { refresh } from '../../../store/todo.actions';
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';

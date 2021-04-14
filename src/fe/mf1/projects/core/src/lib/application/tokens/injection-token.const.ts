@@ -4,5 +4,11 @@ export const INJECTION_TOKEN = {
     },
     STATE: {
 
+    },
+    API: {
+        TODO: "injection-token-api-todo"
+    },
+    TOOLS: {
+        TOASTER: "injection-token-tools-toaster"
     }
 }
