@@ -53,7 +53,17 @@ export class TodoBusHandlerService {
 
   toggleTodoCompleted(item: TodoItem): void {
     this.store.dispatch(editTodo({ item: { ...item, isCompleted: !item.isCompleted } }));
-    this.busConnector.dispatchEvent(busEvent.todo.edit, item);
+    this.busConnector.dispatchEvent(busEvent.todo.toggle, item);
+  }
+
+  toggleTodoSubscribe(): void {
+    this.busConnector.subscribe(busEvent.todo.edit, (data: TodoItem) => {
+      this.store.dispatch(editTodo({ item: { ...data, isCompleted: !data.isCompleted } }));
+    });
+  }
+
+  toggleTodoUnSubscribe(): void {
+    this.busConnector.unSubscribe(busEvent.todo.toggle);
   }
 
   openEditDialog(item: TodoItem) {

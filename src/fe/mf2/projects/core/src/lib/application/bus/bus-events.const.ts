@@ -4,6 +4,7 @@ export const busEvent = {
         create: "todo-item-create",
         editDialogOpen: "todo-edit-dialog-open",
         edit: "todo-item-edit",
+        toggle: "todo-item-completed-toggle",
         delete: "todo-item-delete"
     }
 }

@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TodoItem } from '../../../models/todo-item.interface';
 import { TodoModuleState } from '../../../models/todo-module-state.interface';
-import { deleteTodo, editTodo, refresh } from '../../../store/todo.actions';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TodoEditContainerComponent } from '../../todo-dialog/todo-edit-container/todo-edit-container.component';
+import { refresh } from '../../../store/todo.actions';
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
 
 @Component({
@@ -17,7 +15,6 @@ export class TodoListContainerComponent implements OnInit {
 
   constructor(
     private store: Store<{ todo: TodoModuleState }>,
-    public dialog: MatDialog,
     private todoBus: TodoBusHandlerService
   ) { }
 
@@ -32,12 +29,14 @@ export class TodoListContainerComponent implements OnInit {
   ngOnDestroy(): void {
     this.todoBus.editTodoUnSubscribe();
     this.todoBus.deleteTodoUnSubscribe();
+    this.todoBus.toggleTodoSubscribe();
   }
 
   ngOnInit(): void {
     this.store.dispatch(refresh());
     this.todoBus.editTodoSubscribe();
     this.todoBus.deleteTodoSubscribe();
+    this.todoBus.toggleTodoUnSubscribe();
   }
 
   openDialog(item: TodoItem): void {
