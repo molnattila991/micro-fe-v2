@@ -1,9 +1,7 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { busEvent, IBusConnector, INJECTION_TOKEN } from 'projects/core/src/public-api';
-import { UiState } from 'src/app/models/ui-state.interface';
+import { UiState } from 'projects/core/src/public-api';
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
-import { TodoCreateContainerComponent } from '../../todo-dialog/todo-create-container/todo-create-container.component';
 
 @Component({
   selector: 'lib-todo-page-container',

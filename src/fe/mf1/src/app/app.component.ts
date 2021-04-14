@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { UiState } from './models/ui-state.interface';
 import { UiSettingsService } from './services/ui-settings.service';
 
 @Component({
@@ -9,8 +7,6 @@ import { UiSettingsService } from './services/ui-settings.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'eurofins-app';
-
   constructor(private uiSettings: UiSettingsService) {
 
   }

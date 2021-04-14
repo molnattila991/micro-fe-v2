@@ -1,25 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Inject, Injectable } from '@angular/core';
+import { INJECTION_TOKEN, IRootStateCommand, IRootStateQuery } from 'projects/core/src/public-api';
 import { Subject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
-import { UiState } from '../models/ui-state.interface';
-import { closeSideNav, openSideNav } from '../state/ui.actions';
 
 @Injectable()
 export class UiSettingsService {
 
   private toggle$: Subject<void> = new Subject();
-  constructor(private storeUI: Store<{ ui: UiState }>) {
+  constructor(
+    @Inject(INJECTION_TOKEN.STATE.COMMAND.ROOT) private command: IRootStateCommand,
+    @Inject(INJECTION_TOKEN.STATE.QUERY.ROOT) private query: IRootStateQuery
+  ) {
     this.toggle$.pipe(
       withLatestFrom(
-        this.storeUI.select(state => state.ui.opened)
+        this.query.getSidebarState()
       ),
       map(([action, value]) => value)
     ).subscribe(opened => {
       if (opened) {
-        this.storeUI.dispatch(closeSideNav());
+        this.command.closeSidebar();
       } else {
-        this.storeUI.dispatch(openSideNav());
+        this.command.openSidebar();
       }
     })
   }
