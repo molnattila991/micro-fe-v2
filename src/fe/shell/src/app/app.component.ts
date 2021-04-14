@@ -42,7 +42,7 @@ export class AppComponent implements AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.viewContainerRef
     const dialogRef = this.dialog.open(TodoCreateViewComponent, {
-      width: '250px',
+      width: '350px',
       data: { title: "", description: "" }
     });
 
@@ -56,7 +56,7 @@ export class AppComponent implements AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.viewContainerRef
     const dialogRef = this.dialog.open(TodoEditViewComponent, {
-      width: '300px',
+      width: '350px',
       data: item
     });
 
