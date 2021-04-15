@@ -8,9 +8,6 @@ services:
             - 443:443
         volumes:
             - ./webserver-config/apigateway.default.conf:/etc/nginx/conf.d/default.conf
-            - ./src/fe/shell/dist/shell:/usr/share/nginx/html/shell
-            - ./src/fe/mf1/dist/eurofins-app:/usr/share/nginx/html/mf1
-            - ./src/fe/mf2/dist/eurofins-app:/usr/share/nginx/html/mf2
     todo-api-v1:
         build:
             context: ./src/api/todo-api-v1
