@@ -29,7 +29,7 @@ This is a simple todo application that implements micro frontend and service-ori
     - cd .\micro-fe\
 - Build and run with Docker Compose
     - docker-compose up --build
-        - it will download, build and run all images
+        - it will download, build all images and run all containers
         - it may take a while because there is a lot to do
 - open http://localhost:19999/shell/ in your browser
     - you can also use the following urls
