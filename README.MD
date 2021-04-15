@@ -6,6 +6,7 @@ This is a simple todo application that implements micro frontend and service-ori
     - custom npm packages
     - shell with two contained micro frontends
     - separated logic
+    - smart/dumb components
 - All API projects were written in ASP.NET Core 3.1
     - Entity Framework Core
     - CQRS/MetiatR
