@@ -1,11 +1,11 @@
 # Todo App
 This is a simple todo application that implements micro frontend and service-oriented architectures. During the development, I kept in mind the design patterns and the SOLID principles.
 - All frontend applications were written in Angular 11+
+    - NGRX, Angular Material
+    - micro frontends communicate over event bus
     - custom npm packages
     - shell with two contained micro frontends
     - separated logic
-    - NGRX, Angular Material
-    - micro frontends communicate over event bus
 - All API projects were written in ASP.NET Core 3.1
     - Entity Framework Core
     - CQRS/MetiatR
@@ -14,8 +14,10 @@ This is a simple todo application that implements micro frontend and service-ori
     - Serilog
     - N-tier/Onion architecture
     - SqLite
-- All projects contain Dockerfile
+- Each project has its own Dockerfile
 - I used Nginx for reverse proxy/webserver
+- docker-compose.yml is in the root ot repository
+    - it contains two ASP.NET Core web APIs, three Angular applications and an Nginx reverse proxy
 
 ## Run with Docker Compose
 ### Windows
