@@ -1,5 +1,5 @@
-# Eurofins App
-This is a sample todo application that implements micro frontend and service-oriented architectures. During the development I used design patterns and SOLID principles.
+# Todo App
+This is a simple todo application that implements micro frontend and service-oriented architectures. During the development, I kept in mind the design patterns and the SOLID principles.
 - All frontend applications were written in Angular 11+
     - custom npm packages
     - shell with two contained micro frontends
