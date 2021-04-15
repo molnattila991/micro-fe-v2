@@ -16,7 +16,7 @@ This is a simple todo application that implements micro frontend and service-ori
     - SqLite
 - Each project has its own Dockerfile
 - I used Nginx for reverse proxy/webserver
-- docker-compose.yml is in the root ot repository
+- docker-compose.yml is in root of the repository
     - it contains two ASP.NET Core web APIs, three Angular applications and an Nginx reverse proxy
 
 ## Run with Docker Compose
