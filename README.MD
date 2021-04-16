@@ -10,6 +10,8 @@ This is a simple todo application that implements micro frontend and service-ori
 - All API projects were written in ASP.NET Core 3.1
     - Entity Framework Core
     - CQRS/MetiatR
+    - Specification pattern
+    - Repository pattern
     - XUnit, Moq
     - Swagger
     - Serilog
@@ -22,17 +24,17 @@ This is a simple todo application that implements micro frontend and service-ori
 
 ## Run with Docker Compose
 ### Windows
-- download and install Docker Desktop for Windows 
+- Download and install Docker Desktop for Windows 
     - https://hub.docker.com/editions/community/docker-ce-desktop-windows
 - Clone repository into your desired folder
     - git clone https://github.com/molnattila991/micro-fe 
-- step into the folder
+- Step into the folder
     - cd .\micro-fe\
 - Build and run with Docker Compose
     - docker-compose up --build
         - it will download, build all images and run all containers
         - it may take a while because there is a lot to do
-- open http://localhost:19999/shell/ in your browser
+- Open http://localhost:19999/shell/ in your browser
     - you can also use the following urls
         - http://localhost:19999/mf1/
         - http://localhost:19999/mf2/
@@ -44,9 +46,12 @@ This is a simple todo application that implements micro frontend and service-ori
 - Install Docker
 - Install Docker Compose
 - Clone repository
+    - git clone https://github.com/molnattila991/micro-fe
+- Step into micre-fe folder
+    - cd micro-fe/
 - Build and run with Docker Compose
     - docker-compose up --build
-- open http://localhost:19999/shell/ in your browser
+- Open http://localhost:19999/shell/ in your browser
     - you can also use the following urls
         - http://localhost:19999/mf1/
         - http://localhost:19999/mf2/
