@@ -3,7 +3,7 @@ This is a simple todo application that implements micro frontend and service-ori
 - All frontend applications were written in Angular 11+
     - State management libraries (NGRX, Akita)   
     - Angular Material
-    - micro frontends communicate over event bus
+    - micro frontends communicate over message bus
     - custom npm packages
     - shell with two contained micro frontends
     - separated logic
