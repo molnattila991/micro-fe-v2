@@ -1,8 +1,9 @@
 # Todo App
 This is a simple todo application that implements micro frontend and service-oriented architectures. During the development, I kept in mind the design patterns and the SOLID principles.
 - All frontend applications were written in Angular 11+
-    - NGRX, Angular Material
-    - micro frontends communicate over event bus
+    - State management libraries (NGRX, Akita)   
+    - Angular Material
+    - micro frontends communicate over message bus
     - custom npm packages
     - shell with two contained micro frontends
     - separated logic
