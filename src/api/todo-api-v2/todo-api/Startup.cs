@@ -20,6 +20,16 @@ namespace todo_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithMethods("POST", "DELETE", "PUT", "GET");
+                    builder.WithOrigins("http://localhost:4200");
+                    builder.AllowAnyHeader();
+                });
+            });
+
             services.AddApplication();
             services.AddInfrastructureDb();
 
@@ -47,6 +57,7 @@ namespace todo_api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

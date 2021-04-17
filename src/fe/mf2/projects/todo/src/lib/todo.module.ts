@@ -20,7 +20,7 @@ import { TodoFilterModule } from './components/todo-filter/todo-filter.module';
 import { TodoBusHandlerService } from './services/todo-bus-handler.service';
 import { BusIsConnectedDirective } from './components/directive/bus-is-connected.directive';
 import { INJECTION_TOKEN } from 'projects/core/src/public-api';
-import { TodoStateModule } from 'projects/infrastructure/src/public-api';
+import { TodoStateModule, TodoV2StateModule } from 'projects/infrastructure/src/public-api';
 
 const routes: Routes = [
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
     MatDialogModule,
     RouterModule.forChild(routes),
 
-    TodoStateModule,
+    TodoV2StateModule,
     TodoDialogModule,
     TodoFilterModule,
   ],
