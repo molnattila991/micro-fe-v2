@@ -20,7 +20,10 @@ export const INJECTION_TOKEN = {
         TODO: tokenPrefix + "api-todo"
     },
     TOOLS: {
-        TOASTER: tokenPrefix + "tools-toaster"
+        TOASTER: tokenPrefix + "tools-toaster",
+        API: {
+            ERRORHANDLER: tokenPrefix+ "api-error-handler"
+        }
     }
 }
 

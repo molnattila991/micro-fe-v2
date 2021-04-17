@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { IApiService, INJECTION_TOKEN, IToaster, ITodoStateCommand, ToasterOption, TodoItem } from 'projects/core/src/public-api';
+import { IApiErrorHandler, IApiService, INJECTION_TOKEN, IToaster, ITodoStateCommand, ToasterOption, TodoItem } from 'projects/core/src/public-api';
 import { combineLatest, merge, Subject } from 'rxjs';
 import { switchMap, withLatestFrom } from 'rxjs/operators';
 import { TodoQuery } from './todo.query';
@@ -14,7 +14,7 @@ export class TodoService implements ITodoStateCommand {
     private todoStore: TodoStore,
     private todoQuery: TodoQuery,
     @Inject(INJECTION_TOKEN.API.TODO) private dataProvider: IApiService<TodoItem>,
-    @Inject(INJECTION_TOKEN.TOOLS.TOASTER) private toastr: IToaster
+    @Inject(INJECTION_TOKEN.TOOLS.API.ERRORHANDLER) private errorHandler: IApiErrorHandler
   ) {
 
     merge(
@@ -31,7 +31,7 @@ export class TodoService implements ITodoStateCommand {
     ).subscribe(
       todoList => {
         this.todoStore.update({ todoItemsList: todoList })
-      }, this.handleApiError.bind(this)
+      }, this.errorHandler.handle.bind(this.errorHandler)
     );
   }
 
@@ -46,39 +46,18 @@ export class TodoService implements ITodoStateCommand {
   add(item: TodoItem): void {
     this.dataProvider.create(item).toPromise().then(
       ()=>this.refresh()
-    ).catch(this.handleApiError.bind(this));
+    ).catch(this.errorHandler.handle.bind(this.errorHandler));
   }
 
   edit(item: TodoItem): void {
     this.dataProvider.update(item).toPromise().then(
       ()=>this.refresh()
-    ).catch(this.handleApiError.bind(this));
+    ).catch(this.errorHandler.handle.bind(this.errorHandler));
   }
 
   delete(id: number): void {
     this.dataProvider.delete(id).toPromise().then(
       ()=>this.refresh()
-    ).catch(this.handleApiError.bind(this));
-  }
-
-  private handleApiError(error: any) {
-    if (error.status == 0) {
-      this.toastr.error('Server cannot be reached.', 'Error');
-    }
-    if (error.status == 400) {
-      if (error.error && error.error.errors) {
-        let messageHtml = "<ul>";
-        const errorObject = error.error.errors;
-        Object.keys(errorObject).forEach(errorItem => {
-          errorObject[errorItem].forEach((message: string) => {
-            messageHtml += `<li>${message}</li>`;
-          });
-        })
-        messageHtml += "</ul>";
-        this.toastr.error(messageHtml, 'Error', <ToasterOption>{ enableHtml: true, timeOut: 10000 });
-      } else {
-        this.toastr.error(error.statusText, 'Error');
-      }
-    }
+    ).catch(this.errorHandler.handle.bind(this.errorHandler));
   }
 }
