@@ -7,11 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
-import { todoReducer } from './store/todo.reducer';
-import { TodoEffects } from './store/todo.effects';
 import { TodoApiService } from './services/todo-api.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,6 +18,9 @@ import { TodoListContainerComponent } from './components/todo-list/todo-list-con
 import { TodoListViewComponent } from './components/todo-list/todo-list-view/todo-list-view.component';
 import { TodoFilterModule } from './components/todo-filter/todo-filter.module';
 import { TodoBusHandlerService } from './services/todo-bus-handler.service';
+import { BusIsConnectedDirective } from './components/directive/bus-is-connected.directive';
+import { INJECTION_TOKEN } from 'projects/core/src/public-api';
+import { TodoStateModule } from 'projects/infrastructure/src/public-api';
 
 const routes: Routes = [
   {
@@ -34,7 +33,8 @@ const routes: Routes = [
     TodoPageContainerComponent,
     TodoPageViewComponent,
     TodoListContainerComponent,
-    TodoListViewComponent
+    TodoListViewComponent,
+    BusIsConnectedDirective
   ],
   imports: [
     CommonModule,
@@ -48,15 +48,17 @@ const routes: Routes = [
     MatIconModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature("todo", todoReducer),
-    EffectsModule.forFeature([TodoEffects]),
 
+    TodoStateModule,
     TodoDialogModule,
     TodoFilterModule,
   ],
   providers: [
-    TodoApiService,
+    { provide: INJECTION_TOKEN.API.TODO, useClass: TodoApiService },
     TodoBusHandlerService
+  ],
+  exports:[
+    BusIsConnectedDirective
   ]
 })
 export class TodoModule { }

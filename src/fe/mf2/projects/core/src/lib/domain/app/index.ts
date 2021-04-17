@@ -1,0 +1,1 @@
+export { UiState } from "./ui-state.interface"

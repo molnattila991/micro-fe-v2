@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TodoCreate } from '../../../models/todo-create.interface';
+import { TodoCreate } from 'projects/core/src/public-api';
 
 @Component({
   selector: 'lib-todo-create-view',

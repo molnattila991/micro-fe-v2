@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { TodoListFilter } from '../../../models/todo-list-filter.interface';
-import { TodoModuleState } from '../../../models/todo-module-state.interface';
-import { filterList } from '../../../store/todo.actions';
+import { Component, Inject, OnInit } from '@angular/core';
+import { INJECTION_TOKEN, ITodoStateCommand } from 'projects/core/src/public-api';
 
 @Component({
   selector: 'lib-todo-filter-container',
@@ -11,16 +8,16 @@ import { filterList } from '../../../store/todo.actions';
 })
 export class TodoFilterContainerComponent implements OnInit {
 
-  constructor(private store: Store<{ todo: TodoModuleState }>) { }
+  constructor(@Inject(INJECTION_TOKEN.STATE.COMMAND.TODO) private store: ITodoStateCommand) { }
 
   ngOnInit(): void {
   }
 
   clear() {
-    this.store.dispatch(filterList({ item: {} }));
+    this.store.filterList({});
   }
 
   filter(text: string) {
-    this.store.dispatch(filterList({ item: { text } }));
+    this.store.filterList({ text });
   }
 }

@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TodoItemProp } from '../models/todo-item-prop.interface';
-import { TodoItem } from '../models/todo-item.interface';
-import { TodoListFilter } from '../models/todo-list-filter.interface';
+import { TodoItem, TodoItemProp, TodoListFilter } from "projects/core/src/public-api";
 
 export const addTodo = createAction('[Todo Module] Add Todo', props<TodoItemProp>());
 export const refresh = createAction('[Todo Module] Refresh');

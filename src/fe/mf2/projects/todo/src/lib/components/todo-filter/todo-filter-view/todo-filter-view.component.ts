@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { TodoListFilter } from '../../../models/todo-list-filter.interface';
+import { TodoListFilter } from 'projects/core/src/public-api';
 
 @Component({
   selector: 'lib-todo-filter-view',

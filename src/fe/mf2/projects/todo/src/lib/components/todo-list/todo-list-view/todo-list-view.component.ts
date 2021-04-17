@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { TodoItem } from '../../../models/todo-item.interface';
+import { TodoItem } from "projects/core/src/public-api";
 
 @Component({
   selector: 'lib-todo-list-view',

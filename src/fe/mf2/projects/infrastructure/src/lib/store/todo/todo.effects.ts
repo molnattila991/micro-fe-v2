@@ -1,14 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
-import { catchError, finalize, map, switchMap } from "rxjs/operators"
-import { TodoItemProp } from "../models/todo-item-prop.interface";
-import { TodoApiService } from "../services/todo-api.service";
+import { catchError, map, switchMap } from "rxjs/operators"
 import { addTodo, deleteTodo, editTodo, refresh, refreshList } from "./todo.actions";
-import { ToastrService } from 'ngx-toastr';
 import { Store } from "@ngrx/store";
-import { TodoModuleState } from "../models/todo-module-state.interface";
-import { TodoListFilter } from "../models/todo-list-filter.interface";
+import { IApiService, INJECTION_TOKEN, IToaster, ToasterOption, TodoItem, TodoItemProp, TodoListFilter, TodoModuleState } from "projects/core/src/public-api";
 
 @Injectable()
 export class TodoEffects {
@@ -71,8 +67,8 @@ export class TodoEffects {
 
     constructor(
         private actions$: Actions,
-        private dataProvider: TodoApiService,
-        private toastr: ToastrService,
+        @Inject(INJECTION_TOKEN.API.TODO) private dataProvider: IApiService<TodoItem>,
+        @Inject(INJECTION_TOKEN.TOOLS.TOASTER) private toastr: IToaster,
         private store: Store<{ todo: TodoModuleState }>
     ) { }
 
@@ -90,7 +86,7 @@ export class TodoEffects {
                     });
                 })
                 messageHtml += "</ul>";
-                this.toastr.error(messageHtml, 'Error', { enableHtml: true, timeOut: 10000 });
+                this.toastr.error(messageHtml, 'Error', <ToasterOption>{ enableHtml: true, timeOut: 10000 });
             } else {
                 this.toastr.error(error.statusText, 'Error');
             }

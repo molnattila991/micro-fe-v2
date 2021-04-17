@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { TodoItem } from '../../../models/todo-item.interface';
-import { TodoModuleState } from '../../../models/todo-module-state.interface';
-import { refresh } from '../../../store/todo.actions';
+import { Component, Inject, OnInit } from '@angular/core';
+import { INJECTION_TOKEN, ITodoStateCommand, ITodoStateQuery, TodoItem, TodoModuleState } from "projects/core/src/public-api";
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
 
 @Component({
@@ -11,10 +8,12 @@ import { TodoBusHandlerService } from '../../../services/todo-bus-handler.servic
   styleUrls: ['./todo-list-container.component.css']
 })
 export class TodoListContainerComponent implements OnInit {
-  list$ = this.store.select(state => state.todo.todoItemsList);
+  list$ = this.query.getList();
 
   constructor(
-    private store: Store<{ todo: TodoModuleState }>,
+    @Inject(INJECTION_TOKEN.STATE.QUERY.TODO) private query: ITodoStateQuery,
+    @Inject(INJECTION_TOKEN.STATE.COMMAND.TODO) private command: ITodoStateCommand,
+
     private todoBus: TodoBusHandlerService
   ) { }
 
@@ -33,7 +32,7 @@ export class TodoListContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(refresh());
+    this.command.refresh();
     this.todoBus.editTodoSubscribe();
     this.todoBus.deleteTodoSubscribe();
     this.todoBus.toggleTodoSubscribe();

@@ -1,10 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { TodoEdit } from '../../../models/todo-edit.interface';
-import { TodoItem } from '../../../models/todo-item.interface';
-import { TodoModuleState } from '../../../models/todo-module-state.interface';
-import { editTodo } from '../../../store/todo.actions';
+import { INJECTION_TOKEN, IStateCommand, TodoItem } from "projects/core/src/public-api";
 
 @Component({
   selector: 'lib-todo-edit-container',
@@ -16,17 +12,16 @@ export class TodoEditContainerComponent {
   constructor(
     public dialogRef: MatDialogRef<TodoEditContainerComponent>,
     @Inject(MAT_DIALOG_DATA) public item: TodoItem,
-    private store: Store<{ todo: TodoModuleState }>
+    @Inject(INJECTION_TOKEN.STATE.COMMAND.TODO) private store: IStateCommand<TodoItem>
   ) { }
 
   cancel(): void {
     this.dialogRef.close();
-
   }
 
   save(item: TodoItem): void {
     this.dialogRef.close();
-    this.store.dispatch(editTodo({ item }));
+    this.store.edit(item);
   }
 
 }
