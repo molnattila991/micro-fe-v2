@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { INJECTION_TOKEN, ITodoStateCommand, ITodoStateQuery, TodoItem, TodoModuleState } from "projects/core/src/public-api";
-import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
+import { INJECTION_TOKEN, ITodoActionService, ITodoDialogService, ITodoStateCommand, ITodoStateQuery, TodoItem, TodoModuleState } from "projects/core/src/public-api";
 
 @Component({
   selector: 'lib-todo-list-container',
@@ -13,32 +12,33 @@ export class TodoListContainerComponent implements OnInit {
   constructor(
     @Inject(INJECTION_TOKEN.STATE.QUERY.TODO) private query: ITodoStateQuery,
     @Inject(INJECTION_TOKEN.STATE.COMMAND.TODO) private command: ITodoStateCommand,
-
-    private todoBus: TodoBusHandlerService
+    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.EDIT_DIALOG) private dialog: ITodoDialogService,
+    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.DELETE) private deleteAction: ITodoActionService<number>,
+    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.TOGGLE) private toggleAction: ITodoActionService<TodoItem>
   ) { }
 
   delete(id: number) {
-    this.todoBus.deleteTodo(id);
+    this.deleteAction.perform(id);
   }
 
   completedChanged(item: TodoItem): void {
-    this.todoBus.toggleTodoCompleted(item);
+    this.toggleAction.perform(item);
   }
 
   ngOnDestroy(): void {
-    this.todoBus.editTodoUnSubscribe();
-    this.todoBus.deleteTodoUnSubscribe();
-    this.todoBus.toggleTodoUnSubscribe();
+    this.deleteAction.unsubscribe();
+    this.toggleAction.unsubscribe();
+    this.dialog.unsubscribe();
   }
 
   ngOnInit(): void {
     this.command.refresh();
-    this.todoBus.editTodoSubscribe();
-    this.todoBus.deleteTodoSubscribe();
-    this.todoBus.toggleTodoSubscribe();
+    this.dialog.subscribe();
+    this.toggleAction.subscribe();
+    this.deleteAction.subscribe();
   }
 
   openDialog(item: TodoItem): void {
-    this.todoBus.openEditDialog(item);
+    this.dialog.open(item);
   }
 }

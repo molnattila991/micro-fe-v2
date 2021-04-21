@@ -1,6 +1,7 @@
 version: '2'
-
+ 
 services:
+
     nginx:
         image: nginx:1.19.9-alpine
         ports:
@@ -8,6 +9,7 @@ services:
             - 443:443
         volumes:
             - ./webserver-config/apigateway.default.conf:/etc/nginx/conf.d/default.conf
+            
     todo-api-v1:
         build:
             context: ./src/api/todo-api-v1
@@ -15,6 +17,7 @@ services:
             - ./src/api/todo-api-v1/todo-api/:/app/db/
         ports:
             - 8090:80
+
     todo-api-v2:
         build:
             context: ./src/api/todo-api-v2
@@ -22,18 +25,22 @@ services:
             - ./src/api/todo-api-v2/todo-api/:/app/db/
         ports:
             - 8091:80
+
     todo-mf1:
         build:
             context: ./src/fe/mf1
         ports:
             - 8095:80
+
     todo-mf2:
         build:
             context: ./src/fe/mf2
         ports:
             - 8096:80
+
     shell:
         build:
             context: ./src/fe/shell
         ports:
             - 8097:80
+

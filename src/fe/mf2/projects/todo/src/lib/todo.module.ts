@@ -17,10 +17,13 @@ import { TodoDialogModule } from './components/todo-dialog/todo-dialog.module';
 import { TodoListContainerComponent } from './components/todo-list/todo-list-container/todo-list-container.component';
 import { TodoListViewComponent } from './components/todo-list/todo-list-view/todo-list-view.component';
 import { TodoFilterModule } from './components/todo-filter/todo-filter.module';
-import { TodoBusHandlerService } from './services/todo-bus-handler.service';
 import { BusIsConnectedDirective } from './components/directive/bus-is-connected.directive';
 import { INJECTION_TOKEN } from 'projects/core/src/public-api';
 import { TodoStateModule, TodoV2StateModule } from 'projects/infrastructure/src/public-api';
+import { EditTodoBusHandlerService } from './services/edit-todo-bus-handler.service';
+import { CreateTodoBusHandlerService } from './services/create-todo-bus-handler.service';
+import { ToggleBusHandlerService } from './services/toggle-todo-bus-handler.service';
+import { DeleteBusHandlerService } from './services/delete-todo-bus-handler.service';
 
 const routes: Routes = [
   {
@@ -55,9 +58,12 @@ const routes: Routes = [
   ],
   providers: [
     { provide: INJECTION_TOKEN.API.TODO, useClass: TodoApiService },
-    TodoBusHandlerService
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG, useClass: EditTodoBusHandlerService },
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.EDIT_DIALOG, useClass: CreateTodoBusHandlerService },
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.TOGGLE, useClass: ToggleBusHandlerService },
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.DELETE, useClass: DeleteBusHandlerService }
   ],
-  exports:[
+  exports: [
     BusIsConnectedDirective
   ]
 })

@@ -11,11 +11,22 @@ export const STATE = {
     }
 }
 
+const BUSINESS_LOGIC = {
+    TODO: {
+        CREATE_DIALOG: tokenPrefix + "bl-todo-create-dialog",
+        EDIT_DIALOG: tokenPrefix + "bl-todo-edit-dialog",
+        ACTION: {
+            TOGGLE: tokenPrefix + "bl-todo-action-toggle",
+            DELETE: tokenPrefix + "bl-todo-action-delete"
+        }
+    }
+}
+
 export const INJECTION_TOKEN = {
     BUS: {
         CONNECTOR: tokenPrefix + "bus-connector"
     },
-    STATE: STATE,
+    STATE,
     API: {
         TODO: tokenPrefix + "api-todo"
     },
@@ -24,6 +35,7 @@ export const INJECTION_TOKEN = {
         API: {
             ERRORHANDLER: tokenPrefix+ "api-error-handler"
         }
-    }
+    },
+    BUSINESS_LOGIC
 }
 

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UiState } from 'projects/core/src/public-api';
-import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
+import { INJECTION_TOKEN, ITodoDialogService, UiState } from 'projects/core/src/public-api';
 
 @Component({
   selector: 'lib-todo-page-container',
@@ -14,18 +13,19 @@ export class TodoPageContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private storeUI: Store<{ ui: UiState }>,
-    private todoBus: TodoBusHandlerService
+    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG) private dialog: ITodoDialogService,
+
   ) { }
 
   ngOnDestroy(): void {
-    this.todoBus.createTodoUnSubscribe();
+    this.dialog.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.todoBus.createTodoSubscribe();
+    this.dialog.subscribe();
   }
 
   openDialog(): void {
-    this.todoBus.openCreateDialog();
+    this.dialog.open();
   }
 }
