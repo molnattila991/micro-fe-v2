@@ -3,7 +3,7 @@ import { busEvent, IBusConnector, INJECTION_TOKEN, IStateCommand, ITodoActionSer
 import { TodoItem } from "projects/core/src/public-api";
 
 @Injectable()
-export class ToggleBusHandlerService implements ITodoActionService<number> {
+export class ToggleBusHandlerService implements ITodoActionService<TodoItem> {
 
     constructor(
         @Inject(INJECTION_TOKEN.BUS.CONNECTOR) private busConnector: IBusConnector,
@@ -11,17 +11,17 @@ export class ToggleBusHandlerService implements ITodoActionService<number> {
     ) { }
 
     subscribe(): void {
-        this.busConnector.subscribe(busEvent.todo.delete, (id) => {
-            this.store.delete(id);
+        this.busConnector.subscribe(busEvent.todo.toggle, (item: TodoItem) => {
+            this.store.edit({ ...item, isCompleted: !item.isCompleted });
         });
     }
 
     unsubscribe(): void {
-        this.busConnector.unSubscribe(busEvent.todo.edit);
+        this.busConnector.unSubscribe(busEvent.todo.toggle);
     }
 
-    perform(data: number): void {
-        this.store.delete(data);
-        this.busConnector.dispatchEvent(busEvent.todo.delete, data);
+    perform(data: TodoItem): void {
+        this.store.edit({ ...data, isCompleted: !data.isCompleted });
+        this.busConnector.dispatchEvent(busEvent.todo.toggle, data);
     }
 }

@@ -58,8 +58,8 @@ const routes: Routes = [
   ],
   providers: [
     { provide: INJECTION_TOKEN.API.TODO, useClass: TodoApiService },
-    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG, useClass: EditTodoBusHandlerService },
-    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.EDIT_DIALOG, useClass: CreateTodoBusHandlerService },
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG, useClass: CreateTodoBusHandlerService },
+    { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.EDIT_DIALOG, useClass: EditTodoBusHandlerService },
     { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.TOGGLE, useClass: ToggleBusHandlerService },
     { provide: INJECTION_TOKEN.BUSINESS_LOGIC.TODO.ACTION.DELETE, useClass: DeleteBusHandlerService }
   ],

@@ -13,8 +13,7 @@ export class TodoPageContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private storeUI: Store<{ ui: UiState }>,
-    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG) private dialog: ITodoDialogService,
-
+    @Inject(INJECTION_TOKEN.BUSINESS_LOGIC.TODO.CREATE_DIALOG) private dialog: ITodoDialogService
   ) { }
 
   ngOnDestroy(): void {
