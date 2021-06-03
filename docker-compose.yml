@@ -10,6 +10,12 @@ services:
         volumes:
             - ./webserver-config/apigateway.default.conf:/etc/nginx/conf.d/default.conf
             
+    auth-api:
+        build:
+            context: ./src/api/auth-api
+        ports:
+            - 8092:80
+    
     todo-api-v1:
         build:
             context: ./src/api/todo-api-v1
