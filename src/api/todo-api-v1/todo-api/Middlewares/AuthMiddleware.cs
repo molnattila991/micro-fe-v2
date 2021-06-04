@@ -14,17 +14,14 @@ namespace todo_api.Middlewares
     public class AuthMiddleware
     {
         private RequestDelegate _next;
-        private HttpClient _client;
         ILogger<AuthMiddleware> _logger;
 
         public AuthMiddleware(
             RequestDelegate next,
-            HttpClient client,
             ILogger<AuthMiddleware> logger
             )
         {
             _next = next;
-            _client = client;
             _logger = logger;
         }
 
