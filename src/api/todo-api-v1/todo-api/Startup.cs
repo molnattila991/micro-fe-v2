@@ -64,7 +64,6 @@ namespace todo_api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API");
             });
 
-            app.UseMiddleware<AuthMiddleware>();
 
             //app.UseHttpsRedirection();
 
@@ -73,6 +72,7 @@ namespace todo_api
 
             //app.UseAuthorization();
 
+            app.UseMiddleware<AuthMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

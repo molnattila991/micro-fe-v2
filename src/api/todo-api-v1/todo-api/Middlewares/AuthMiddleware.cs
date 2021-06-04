@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,11 +35,19 @@ namespace todo_api.Middlewares
 
                 if (attribute != null)
                 {
+                    var key = context.Request.Headers.Keys.FirstOrDefault(k => k == "Authorization");
+                    var item = context.Request.Headers.FirstOrDefault(item => item.Key == "Authorization");
+
+                    if (key == null)
+                    {
+                        throw new Exception("Token is missing from header.");
+                    }
+
                     var result = new HttpResponseMessage();
                     using (var client = new HttpClient())
                     {
                         client.BaseAddress = new Uri("http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/tokens/");
-                        client.DefaultRequestHeaders.Add("Authorization", context.Request.Headers.ElementAt(2).Value[0]);
+                        client.DefaultRequestHeaders.Add("Authorization", item.Value[0]);
 
                         result = await client.GetAsync("valid");
                     }
@@ -60,7 +69,7 @@ namespace todo_api.Middlewares
             {
                 _logger.LogError(e.Message, e);
                 context.Response.Clear();
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 await context.Response.WriteAsync("Error happened during auth.");
             }
         }
