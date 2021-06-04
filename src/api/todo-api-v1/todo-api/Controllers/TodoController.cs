@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using todo_api.CustomAttributes;
 using todo_api.Models.Todo;
 using todo_api_business_logic.Interfaces;
 using todo_api_data_access.Entities;
@@ -36,6 +37,7 @@ namespace todo_api.Controllers
         }
 
         [HttpGet]
+        [CustomAuthAttribute]
         public async Task<IEnumerable<TodoItem>> Get()
         {
             return await _todoItemListService.GetAll();
