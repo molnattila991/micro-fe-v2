@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IBusConnector, UiState } from 'projects/core/src/public-api';
+import { IBusConnector, INJECTION_TOKEN, UiState } from 'projects/core/src/public-api';
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
 
 @Component({
