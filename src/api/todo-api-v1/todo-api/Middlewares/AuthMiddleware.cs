@@ -37,10 +37,10 @@ namespace todo_api.Middlewares
                     var result = new HttpResponseMessage();
                     using (var client = new HttpClient())
                     {
-                        _client.BaseAddress = new Uri("http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/tokens/");
-                        _client.DefaultRequestHeaders.Add("Authorization", context.Request.Headers.ElementAt(2).Value[0]);
+                        client.BaseAddress = new Uri("http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/tokens/");
+                        client.DefaultRequestHeaders.Add("Authorization", context.Request.Headers.ElementAt(2).Value[0]);
 
-                        result = await _client.GetAsync("valid");
+                        result = await client.GetAsync("valid");
                     }
 
                     if (result.StatusCode == HttpStatusCode.OK)
