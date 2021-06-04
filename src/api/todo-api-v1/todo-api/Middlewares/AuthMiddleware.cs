@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,17 @@ namespace todo_api.Middlewares
     {
         private RequestDelegate _next;
         private HttpClient _client;
+        ILogger<AuthMiddleware> _logger;
 
-        public AuthMiddleware(RequestDelegate next, HttpClient client)
+        public AuthMiddleware(
+            RequestDelegate next,
+            HttpClient client,
+            ILogger<AuthMiddleware> logger
+            )
         {
             _next = next;
             _client = client;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -30,12 +37,14 @@ namespace todo_api.Middlewares
 
                 if (attribute != null)
                 {
+                    var result = new HttpResponseMessage();
+                    using (var client = new HttpClient())
+                    {
+                        _client.BaseAddress = new Uri("http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/tokens/");
+                        _client.DefaultRequestHeaders.Add("Authorization", context.Request.Headers.ElementAt(2).Value[0]);
 
-                    _client.BaseAddress = new Uri("http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/tokens/");
-                    _client.DefaultRequestHeaders.Add("Authorization", context.Request.Headers.ElementAt(2).Value[0]);
-
-                    var result = await _client.GetAsync("valid");
-                    var resultResult = result.Content.ReadAsStringAsync();
+                        result = await _client.GetAsync("valid");
+                    }
 
                     if (result.StatusCode == HttpStatusCode.OK)
                     {
@@ -43,15 +52,16 @@ namespace todo_api.Middlewares
                     }
                     else
                     {
+                        _logger.LogInformation("User try to get resource without permission.");
                         context.Response.Clear();
                         context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         await context.Response.WriteAsync("Unauthorized");
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //TODO log error
+                _logger.LogError(e.Message, e);
                 context.Response.Clear();
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 await context.Response.WriteAsync("Error happened during auth.");
