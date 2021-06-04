@@ -33,8 +33,9 @@ export class AppComponent implements AfterViewInit {
 
     this.auth.login("attila@gmail.com", "AttilaaA?1")
       .subscribe(
-          () => {
-              console.log("User is logged in");
+          (token) => {
+              console.log("User is logged in", token);
+              createBusEventMaster("user-token-got", { token });
           }
       );
   }

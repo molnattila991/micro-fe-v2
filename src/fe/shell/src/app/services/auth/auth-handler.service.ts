@@ -14,15 +14,15 @@ export class AuthHandlerService {
   login(email:string, password:string) {
       return this.http.post('http://almatest.westeurope.cloudapp.azure.com:19999/api/auth/user/token', {email, password})
             .pipe(
-                tap(() => this.setSession),
+                tap((reslt) => {this.setSession(reslt);}),
             );
   }
         
   private setSession(authResult: any) {
-      const expiresAt = moment().add(authResult.expiresIn,'second');
+      //const expiresAt = moment().add(authResult.expiresIn,'second');
 
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+      localStorage.setItem('id_token', authResult);
+      //localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   }          
 
   logout() {

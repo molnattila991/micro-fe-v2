@@ -37,7 +37,7 @@ namespace todo_api.Controllers
         }
 
         [HttpGet]
-        [CustomAuthAttribute]
+        //[CustomAuthAttribute]
         public async Task<IEnumerable<TodoItem>> Get()
         {
             return await _todoItemListService.GetAll();

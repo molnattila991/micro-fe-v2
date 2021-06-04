@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UiState } from 'projects/core/src/public-api';
+import { IBusConnector, UiState } from 'projects/core/src/public-api';
 import { TodoBusHandlerService } from '../../../services/todo-bus-handler.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class TodoPageContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private storeUI: Store<{ ui: UiState }>,
-    private todoBus: TodoBusHandlerService
+    private todoBus: TodoBusHandlerService,
+    @Inject(INJECTION_TOKEN.BUS.CONNECTOR) private busConnector: IBusConnector
   ) { }
 
   ngOnDestroy(): void {
@@ -22,6 +23,9 @@ export class TodoPageContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.busConnector.subscribe("user-token-got", value=>{
+      console.log("mf1", value);
+    });
     this.todoBus.createTodoSubscribe();
   }
 
