@@ -63,3 +63,6 @@ This is a simple todo application that implements micro frontend and service-ori
 
 ## Stop running
 - docker-compose down
+
+## Auth DB
+- Create an MSSQL/MySQL database and Update database inside auth-api project

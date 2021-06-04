@@ -6,5 +6,10 @@ export const busEvent = {
         edit: "todo-item-edit",
         toggle: "todo-item-completed-toggle",
         delete: "todo-item-delete"
+    },
+    user: {
+        token: {
+            got: "user-token-got"
+        }
     }
 }
