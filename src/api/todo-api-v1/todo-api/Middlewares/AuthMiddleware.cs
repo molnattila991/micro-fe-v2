@@ -26,7 +26,7 @@ namespace todo_api.Middlewares
             try
             {
                 var endpoint = context.Features.Get<IEndpointFeature>()?.Endpoint;
-                var attribute = endpoint?.Metadata.GetMetadata<AuthAttribute>();
+                var attribute = endpoint?.Metadata.GetMetadata<CustomAuthAttribute>();
 
                 if (attribute != null)
                 {
