@@ -15,6 +15,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { TodoDialogsModule } from "@molnarattila991/todo-dialogs"
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TodoDialogsModule } from "@molnarattila991/todo-dialogs"
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

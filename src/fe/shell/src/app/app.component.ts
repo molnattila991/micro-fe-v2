@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { initBus, addIFrame, subscribeMaster, createBusEventMaster } from "@molnarattila991/bus/lib";
 import { TodoCreateViewComponent, TodoEditViewComponent } from "@molnarattila991/todo-dialogs"
+import { AuthHandlerService } from './services/auth/auth-handler.service';
 
 export interface DialogData {
   animal: string;
@@ -29,12 +30,21 @@ export class AppComponent implements AfterViewInit {
     subscribeMaster("todo-edit-dialog-open", (data: any) => {
       this.openEditDialog(data);
     });
+
+    this.auth.login("attila@gmail.com", "AttilaaA?1")
+      .subscribe(
+          () => {
+              console.log("User is logged in");
+          }
+      );
   }
 
   animal: string = "";
   name: string = "";
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog
+    , public auth: AuthHandlerService
+    ) {
 
   }
 

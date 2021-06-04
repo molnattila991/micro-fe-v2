@@ -27,8 +27,8 @@ namespace auth_api
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    var dbContext = services.GetRequiredService<AuthDBContext>();
-                    dbContext.Database.Migrate();
+                    //var dbContext = services.GetRequiredService<AuthDBContext>();
+                    //dbContext.Database.Migrate();
 
                     //Seed Default Users
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
