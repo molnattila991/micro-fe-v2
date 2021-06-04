@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPath: "http://localhost:19999/api/v1/"
+  apiPath: "http://almatest.westeurope.cloudapp.azure.com:19999/api/v1/"
 };
 
 /*
