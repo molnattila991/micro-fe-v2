@@ -3,14 +3,14 @@ This is a simple todo application that implements micro frontend and service-ori
 - All frontend applications were written in Angular 11+
     - State management libraries (NGRX, Akita)   
     - Angular Material
-    - micro frontends communicate over message bus
-    - custom npm packages
-    - shell with two contained micro frontends
+    - micro frontends communicate with each others via events
+    - use custom npm packages
+    - shell application contains two micro frontends
     - separated logic
     - smart/dumb components
 - All API projects were written in ASP.NET Core 3.1
     - Entity Framework Core
-    - CQRS/MetiatR
+    - CQRS/MediatR
     - Specification pattern
     - Repository pattern
     - XUnit, Moq
@@ -19,7 +19,7 @@ This is a simple todo application that implements micro frontend and service-ori
     - N-tier/Onion architecture
     - SqLite
 - Each project has its own Dockerfile
-- I used Nginx for reverse proxy/webserver
+- Nginx is used for reverse proxy/webserver
 - docker-compose.yml is in root of the repository
     - it contains two ASP.NET Core web APIs, three Angular applications and an Nginx reverse proxy
 
