@@ -16,7 +16,7 @@ This is a simple todo application that implements micro frontend and service-ori
     - XUnit, Moq
     - Swagger
     - Serilog
-    - N-tier/Onion architecture
+    - N-tier and Onion architecture
     - SqLite
 - Each project has its own Dockerfile
 - Nginx is used for reverse proxy/webserver
